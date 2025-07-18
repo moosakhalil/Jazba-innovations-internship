@@ -1,0 +1,27 @@
+form{
+background-color: rgb(224, 214, 219);
+padding: 20px;
+flex-direction: column;
+height: 450px;
+width: 350px;
+margin: 80px;
+}
+body{
+justify-content:center;
+display: flex;
+background-color: lavender;
+}
+h1{
+  text-align: center;
+}
+#submit {
+    background-color: rgb(25, 98, 182);
+    color: white;
+margin-left: 130px;
+}
+@media (max-width: 1000px){
+  h1{
+    color: rgb(47, 196, 72);
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,147 @@
+/* Base font size */
+html {
+  font-size: 62.5%; /* 1rem = 10px */
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #222;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background-color: #0a1a2f;
+}
+
+.logo img {
+  height: 4rem;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.8rem 1.6rem;
+  font-size: 1.4rem;
+  background-color: #1e3a5f;
+  color: white;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+
+/* Main Content */
+.main-content {
+  padding: 3rem;
+}
+
+.content-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse; /* Image on the right, text on the left */
+  margin-bottom: 3rem;
+  gap: 2rem;
+}
+
+.content-image {
+  width: 30rem;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.text h2 {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+}
+
+.text p {
+  font-size: 1.6rem;
+  max-width: 50rem;
+}
+
+/* Footer */
+.footer {
+  background-color: #0a1a2f;
+  color: #ccc;
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 1.4rem;
+}
+@media (max-width: 51.75rem){
+    html{
+        font-size: 65%;
+     }
+.content-image {
+  width: 20rem;
+  height: auto;
+
+}
+.text h2{
+    font-size: 2.3rem;
+}
+}
+@media (max-width: 46.6875rem){
+    html{
+        font-size: 55%;
+    }
+    .content-image{
+        width: 20rem;
+    }
+    .text h2{
+        font-size: 2.2rem;
+    }
+}
+@media (max-width: 30.1875rem){
+    html{
+        font-size: 48%;
+    }
+    .content-image{
+        width: 17rem;
+    }
+    .text h2{
+        font-size: 2rem;
+    }
+}
+@media (max-width: 23.125rem){
+    html{
+        font-size: 46%;
+    }
+    .content-image{
+        width: 16rem;
+    }
+    .text h2{
+        font-size: 1.8rem;
+    }
+}
+@media (max-width: 355px) {
+  .content-block {
+    flex-direction: column; /* Stack image above text */
+    text-align: center;     /* Optional: center-align text */
+  }
+
+  .content-image {
+    width: 100%;             /* Optional: make image full width */
+    max-width: 25rem;        /* Prevent it from getting too big */
+    margin: 0 auto;
+  }
+
+  .text {
+    padding-top: 1rem;
+  }
+}
+

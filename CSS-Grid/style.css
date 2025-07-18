@@ -1,0 +1,43 @@
+body h2{
+   color:rgb(13, 13, 14);
+   font-weight: 0;
+  
+   text-align: center;
+}
+.box{
+    
+    display:grid;
+    grid-template-columns:150px 150px 150px;
+    grid-template-rows: 150px 150px 150px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.box1,.box2,.box3,.box4,.box5,.box6,.box7,.box8,.box9{
+    display: grid;
+    border:solid skyblue;
+ height:120px;
+ width: 120px;
+ align-items: center;
+ justify-content: center;
+  font-size: xx-large;
+ }
+ .box1,.box5,.box9{
+    color: red;
+   font-weight: bold;
+  
+ }
+ .box2,.box7{
+    color: blue;
+    font-weight: bold;
+  
+ }
+/*.box1{
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+.box2{
+    grid-column: 1/2;
+    grid-row: 1/2;
+}*/

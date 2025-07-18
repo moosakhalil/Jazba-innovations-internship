@@ -1,0 +1,56 @@
+body{
+    background-color: blanchedawhite;
+}
+.fcontainer{
+display:flex;
+/**justify-content: center;*/
+ gap:30px;
+ padding:30px;
+ background-color:#2e2e2e;
+ height: 1vh;
+justify-content: center;
+align-items: center;
+padding-right: 300px;
+
+
+
+color:white;
+
+}
+.item{
+    display:flex;
+   
+   
+    }
+   body header h3{
+    display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+.Box{
+    display: flex;
+ justify-content: space-between;
+ flex-direction: row;
+ gap: 20px;
+ align-items: center;
+ flex-wrap: wrap;
+
+}
+.number1,.number2,.number3,.number4,.number5,.number6{
+    background-color: #dceee3 ;
+    height: 150px;
+    width: 350px;
+    display: flex;
+    margin:20px;
+    text-align: center;
+    
+   
+}
+ .logo img{
+  height:40px;
+display: flex;
+padding-right: 580px;
+
+ 
+}
