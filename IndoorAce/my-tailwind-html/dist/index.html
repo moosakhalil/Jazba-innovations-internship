@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IndoorAce</title>
+    <link href="style.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <nav
+      class="bg-white shadow-md px-6 py-4 flex items-center justify-between relative"
+    >
+    
+      <div class="flex items-center space-x-4">
+        <img src="img/logo.png" alt="IndoorAce Logo" class="w-12 h-12" />
+        <span class="text-[#808000] font-bold text-2xl sm:text-xl"
+          >IndoorAce</span
+        >
+      </div>
+
+      <div class="hidden md:flex space-x-6 text-gray-700 font-medium">
+        <a href="#about" class="hover:text-[#808000]">About</a>
+        <a href="#features" class="hover:text-[#808000]">Why Choose</a>
+        <a href="#howitworks" class="hover:text-[#808000]">How It Works</a>
+        <a href="#gallery" class="hover:text-[#808000]">Gallery</a>
+      </div>
+
+      <a
+        href="#"
+        class="bg-[#808000] text-white px-4 py-2 rounded hover:bg-[#6d6d00] transition text-sm md:text-base hidden sm:inline-block"
+      >
+        Book Now
+      </a>
+
+      <div class="md:hidden">
+        <button
+          id="menu-btn"
+          class="text-[#808000] text-2xl focus:outline-none"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <div
+        id="mobile-menu"
+        class="absolute top-full left-0 w-full bg-white shadow-md rounded-b-lg z-10 hidden md:hidden"
+      >
+        <div
+          class="flex flex-col items-center gap-4 py-4 text-gray-700 font-medium"
+        >
+          <a href="#about" class="hover:text-[#808000]">About</a>
+          <a href="#features" class="hover:text-[#808000]">Why Choose</a>
+          <a href="#howitworks" class="hover:text-[#808000]">How It Works</a>
+          <a href="#gallery" class="hover:text-[#808000]">Gallery</a>
+          <a
+            href="#"
+            class="bg-[#808000] text-white px-4 py-2 rounded hover:bg-[#6d6d00] transition"
+            >Book Now</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+      <section class="text-center">
+        <img
+          src="img/logo.png"
+          alt="IndoorAce Logo"
+          class="w-36 md:w-44 mt-8 mx-auto"
+        />
+        <h1 class="text-[#808000] font-bold text-2xl md:text-3xl">IndoorAce</h1>
+        <h2 class="font-semibold">Zero Hassle Easy Booking</h2>
+      </section>
+
+      <section class="px-4 md:px-8">
+        <h3
+          class="text-[#808000] font-bold text-2xl md:text-3xl mb-4 mt-16 text-left"
+        >
+          Get To Know About IndoorAce
+        </h3>
+        <p class="text-left text-sm md:text-base">
+          IndoorAce is a convenient platform for booking indoor sports arenas.
+          It simplifies reservations for games like Futsal, Cricket, and Padel.
+          Players can book courts instantly without any hassle. Arena owners can
+          manage schedules and boost their business easily. IndoorAce makes
+          sports booking smart, fast, and organized.
+        </p>
+      </section>
+    </div>
+
+    <section id="features">
+      <h4 class="text-[#808000] text-2xl font-bold text-center mt-16 px-4">
+        Why Choose IndoorAce?
+      </h4>
+
+      <div class="flex flex-wrap justify-center gap-6 px-4 mt-16 ">
+        <div
+          class="w-72 sm:w-64 p-6 bg-white shadow-md rounded-xl text-center hover:shadow-xl transition"
+        >
+          <h5 class="text-xl font-semibold">Instant Booking</h5>
+          <i class="fas fa-bolt text-[#808000] text-xl pt-2"></i>
+          <p class="text-gray-600">
+            Book your favorite sports venues in seconds with real-time
+            availability.
+          </p>
+        </div>
+
+        <div
+          class="w-72 sm:w-64 p-6 bg-white shadow-md rounded-xl text-center hover:shadow-xl transition"
+        >
+          <h6 class="text-xl font-semibold">Secure Payments</h6>
+          <i class="fas fa-shield-alt text-[#808000] text-2xl pt-2"></i>
+          <p class="text-gray-600">
+            Safe and secure payment processing with multiple payment options.
+          </p>
+        </div>
+
+        <div
+          class="w-72 sm:w-64 p-6 bg-white shadow-md rounded-xl text-center hover:shadow-xl transition"
+        >
+          <h6 class="text-xl font-semibold">Live Availability</h6>
+          <i class="fas fa-clock text-[#808000] text-2xl pt-2"></i>
+          <p class="text-gray-600">
+            See live availability and book multiple consecutive time slots.
+          </p>
+        </div>
+
+        <div
+          class="w-72 sm:w-64 p-6 bg-white shadow-md rounded-xl text-center hover:shadow-xl transition"
+        >
+          <h6 class="text-xl font-semibold">24/7 Support</h6>
+          <i class="fas fa-headphones text-[#808000] text-2xl pt-2"></i>
+          <p class="text-gray-600">
+            Round-the-clock customer support for all your booking needs.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <h4 class="text-[#808000] text-2xl font-bold text-center mt-16 px-4">
+      How It Works?
+    </h4>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-4">
+      <section id="howitworks">
+        <div class="space-y-8 text-center">
+          <div>
+            <div
+              class="w-10 h-10 bg-[#808000] text-white font-bold rounded-full flex items-center justify-center mx-auto border-4 border-[#808000] mt-8"
+            >
+              1
+            </div>
+            <h6 class="text-xl font-semibold mt-4">Browse Venues</h6>
+            <p>Explore our wide selection of indoor venues in your area.</p>
+          </div>
+
+          <div>
+            <div
+              class="w-10 h-10 bg-[#808000] text-white font-bold rounded-full flex items-center justify-center mx-auto border-4 border-[#808000]"
+            >
+              2
+            </div>
+            <h6 class="text-xl font-semibold mt-4">Select & Book</h6>
+            <p>Choose your preferred time slots and book easily.</p>
+          </div>
+
+          <div>
+            <div
+              class="w-10 h-10 bg-[#808000] text-white font-bold rounded-full flex items-center justify-center mx-auto border-4 border-[#808000]"
+            >
+              3
+            </div>
+            <h6 class="text-xl font-semibold mt-4">Play & Enjoy</h6>
+            <p>Show up and enjoy your game at the booked venue.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="text-center mt-24">
+        <img
+          src="img/booking.png"
+          alt="Booking Demo"
+          class="w-full max-w-md mx-auto mt-4"
+        />
+      </section>
+    </div>
+
+    <h4 class="text-[#808000] text-2xl font-bold text-center mt-16 px-4">
+      Image Gallery
+    </h4>
+    <section id="gallery">
+      <div class="flex flex-wrap justify-center gap-6 px-4 mt-8">
+        <div class="w-64 p-4 bg-[#e1e1db] rounded-xl shadow-md">
+          <img src="img/img1.png" alt="Gallery Image 1" class="w-full h-auto" />
+        </div>
+        <div class="w-64 p-4 bg-[#e1e1db] rounded-xl shadow-md">
+          <img
+            src="img/image.png"
+            alt="Gallery Image 2"
+            class="w-full h-auto"
+          />
+        </div>
+        <div class="w-64 p-4 bg-[#e1e1db] rounded-xl shadow-md">
+          <img src="img/team.jpg" alt="Gallery Image 3" class="w-full h-auto" />
+        </div>
+        <div class="w-64 p-4 bg-[#e1e1db] rounded-xl shadow-md">
+          <img src="img/dis.png" alt="Gallery Image 4" class="w-full h-auto" />
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-gray-100 mt-16 pt-4 px-4">
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
+      >
+        <section>
+          <h3 class="text-[#808000] font-bold text-center text-xl">
+            Quick Links
+          </h3>
+          <div class="mt-2 space-y-2 text-center">
+            <a href="#about">About Us</a><br />
+            <a href="#features">Why Us</a><br />
+            <a href="#howitworks">How It Works</a><br />
+            <a href="#gallery">Image Gallery</a>
+          </div>
+        </section>
+
+        <section>
+          <h3 class="text-[#808000] text-center font-bold text-xl">Sports</h3>
+          <div class="mt-2 space-y-1 text-center">
+            Futsal<br />
+            Cricket<br />
+            Padel
+          </div>
+        </section>
+
+        <section>
+          <h3 class="text-[#808000] font-bold text-xl text-center">Contact</h3>
+          <div class="mt-2 space-y-2 text-center">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a><br />
+            <span>IndoorAce</span>
+          </div>
+        </section>
+      </div>
+      <div class="text-center text-[#808000] font-semibold mt-4 pb-4">
+        © 2025 IndoorAce. All rights reserved.
+      </div>
+    </footer>
+  </body>
+</html>
