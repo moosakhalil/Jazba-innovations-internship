@@ -1,0 +1,16 @@
+[build]
+  publish = "src"
+  command = ""
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[dev]
+  command = ""
+  port = 8080
+  publish = "src"
