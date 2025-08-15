@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+</head>
+<body class="min-h-screen app-bg bg-fixed">
+    <div class="container px-4 py-8 ml-4 md:ml-12">
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold text-white drop-shadow mb-2 animate-fade-in">Todo List</h1>
+            <p class="text-teal-100 text-lg">Manage tasks with modern JavaScript features</p>
+        </header>
+
+
+        <div class="max-w-3xl mr-auto mb-6">
+            <div class="bg-white/90 backdrop-blur rounded-xl shadow-lg p-4 border border-teal-100 animate-slide-up">
+                <div class="flex flex-col lg:flex-row gap-2">
+                    <input
+                        type="text"
+                        id="todoInput"
+                        placeholder="What needs to be done?"
+                        class="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                    >
+                    <div class="flex gap-2">
+                        <input
+                            type="date"
+                            id="dueDate"
+                            class="px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                        >
+                        <input
+                            type="time"
+                            id="dueTime"
+                            class="px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
+                        >
+                    </div>
+                    <button
+                        id="addBtn"
+                        class="px-5 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    >Add</button>
+                </div>
+                <p class="text-xs text-gray-600 mt-2">Optional: pick a due date and time. Tasks auto-complete when time passes.</p>
+            </div>
+        </div>
+
+        
+        <div class="max-w-3xl mr-auto space-y-4">
+            <div class="bg-white/95 backdrop-blur rounded-xl shadow-lg p-4 border border-teal-100">
+                <ul id="todoList" class="divide-y divide-gray-200"></ul>
+            </div>
+
+            
+            <div class="bg-white/90 backdrop-blur rounded-xl shadow-lg p-4 border border-teal-100 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                <div class="text-sm text-gray-600">
+                    <span id="statsTotal" class="font-semibold">0</span> total •
+                    <span id="statsCompleted" class="font-semibold">0</span> completed •
+                    <span id="statsRemaining" class="font-semibold">0</span> remaining
+                </div>
+                <div class="flex gap-2">
+                    <button id="filterAll" class="px-3 py-1 rounded border border-teal-300 text-teal-700 hover:bg-teal-50">All</button>
+                    <button id="filterActive" class="px-3 py-1 rounded border border-teal-300 text-teal-700 hover:bg-teal-50">Active</button>
+                    <button id="filterCompleted" class="px-3 py-1 rounded border border-teal-300 text-teal-700 hover:bg-teal-50">Completed</button>
+                </div>
+                <button id="clearCompleted" class="px-3 py-1 text-red-700 border border-red-200 rounded hover:bg-red-50">Clear completed</button>
+            </div>
+        </div>
+
+    </div>
+    <script>
+      (function () {
+        function createItem({ id, title, completed, dueAt, createdAt }, { onToggle, onRemove, onEdit }, now = Date.now()) {
+          const li = document.createElement("li")
+          li.className = "py-3 px-3 flex items-start gap-3 bg-white/80 rounded-lg border border-teal-100 hover:bg-white transition shadow-sm"
+          li.dataset.id = id
+
+          const checkbox = document.createElement("input")
+          checkbox.type = "checkbox"
+          checkbox.checked = completed
+          checkbox.className = "h-5 w-5 rounded border-gray-300 text-teal-600 focus:ring-teal-500"
+
+          const titleSpan = document.createElement("span")
+          titleSpan.textContent = title
+          titleSpan.className = `flex-1 ${completed ? "line-through text-gray-400" : "text-gray-800"}`
+          titleSpan.title = "Click to edit"
+
+          const meta = document.createElement("div")
+          meta.className = "flex items-center gap-2 ml-auto"
+
+          if (dueAt) {
+            const due = Number(dueAt)
+            const overdue = !completed && due <= now
+            const dueBadge = document.createElement("span")
+            const dateStr = new Date(due).toLocaleString()
+            dueBadge.textContent = overdue ? `Overdue • ${dateStr}` : `Due • ${dateStr}`
+            dueBadge.className = `text-xs px-2 py-1 rounded-full border font-medium ${overdue ? "border-red-300 text-red-700 bg-red-50" : "border-teal-200 text-teal-800 bg-teal-50"}`
+            meta.appendChild(dueBadge)
+
+            const diff = due - now
+            if (!completed && diff > 0 && diff <= 60 * 60 * 1000) {
+              const mm = String(Math.floor((diff / 1000) / 60)).padStart(2, "0")
+              const ss = String(Math.floor((diff / 1000) % 60)).padStart(2, "0")
+              const countdown = document.createElement("span")
+              countdown.textContent = `${mm}:${ss}`
+              countdown.className = "text-xs px-2 py-1 rounded-full bg-teal-50 text-teal-700 border border-teal-200"
+              meta.appendChild(countdown)
+
+              const barWrap = document.createElement("div")
+              barWrap.className = "w-24 h-1 rounded-full bg-teal-100 overflow-hidden"
+              const bar = document.createElement("div")
+              const pct = Math.max(0, Math.min(1, 1 - (diff / (60 * 60 * 1000))))
+              bar.style.width = `${Math.round(pct * 100)}%`
+              bar.className = "h-full bg-teal-500"
+              barWrap.appendChild(bar)
+              meta.appendChild(barWrap)
+            } else if (!completed && diff <= 0) {
+              const GRACE_MS = 10 * 60 * 1000
+              const remaining = (Number(dueAt) + GRACE_MS) - now
+              if (remaining > 0) {
+                const mm = String(Math.floor((remaining / 1000) / 60)).padStart(2, "0")
+                const ss = String(Math.floor((remaining / 1000) % 60)).padStart(2, "0")
+                const grace = document.createElement("span")
+                grace.textContent = `Grace ${mm}:${ss}`
+                grace.className = "text-xs px-2 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200"
+                meta.appendChild(grace)
+
+                const wrap = document.createElement("div")
+                wrap.className = "w-24 h-1 rounded-full bg-amber-100 overflow-hidden"
+                const fill = document.createElement("div")
+                const pct = Math.max(0, Math.min(1, 1 - (remaining / GRACE_MS)))
+                fill.style.width = `${Math.round(pct * 100)}%`
+                fill.className = "h-full bg-amber-400"
+                wrap.appendChild(fill)
+                meta.appendChild(wrap)
+              }
+            }
+          }
+
+          const created = document.createElement("div")
+          if (createdAt) {
+            created.textContent = new Date(Number(createdAt)).toLocaleString()
+          }
+          created.className = "text-[11px] text-gray-500"
+
+          const leftCol = document.createElement("div")
+          leftCol.className = "flex-1 flex flex-col"
+          leftCol.appendChild(titleSpan)
+          leftCol.appendChild(created)
+
+          if (completed) {
+            li.classList.add("border-green-200")
+          }
+
+          const removeBtn = document.createElement("button")
+          removeBtn.textContent = "Delete"
+          removeBtn.className = "px-3 py-1.5 text-red-700 border border-red-200 rounded-lg hover:bg-red-50 shadow-sm"
+
+          titleSpan.addEventListener("click", () => {
+            const input = document.createElement("input")
+            input.type = "text"
+            input.value = title
+            input.className = "flex-1 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-teal-500"
+            li.replaceChild(input, leftCol)
+            input.focus()
+
+            const commit = async () => {
+              const newTitle = input.value.trim()
+              if (newTitle && newTitle !== title) {
+                await onEdit(id, newTitle)
+              }
+            }
+
+            input.addEventListener("blur", commit)
+            input.addEventListener("keydown", (e) => {
+              if (e.key === "Enter") {
+                input.blur()
+              } else if (e.key === "Escape") {
+                li.replaceChild(leftCol, input)
+              }
+            })
+          })
+
+          checkbox.addEventListener("change", () => onToggle(id))
+          removeBtn.addEventListener("click", () => onRemove(id))
+
+          li.appendChild(checkbox)
+          li.appendChild(leftCol)
+          li.appendChild(meta)
+          li.appendChild(removeBtn)
+          return li
+        }
+
+        function renderTodos(todos, handlers, filter = "all", now = Date.now()) {
+          const list = document.getElementById("todoList")
+          if (!list) return
+          const filtered = todos.filter(({ completed }) => {
+            if (filter === "active") return !completed
+            if (filter === "completed") return completed
+            return true
+          })
+          list.innerHTML = ""
+          filtered.map((todo) => createItem(todo, handlers, now)).forEach((el) => list.appendChild(el))
+        }
+
+        function updateStats({ total, completed, remaining }) {
+          const set = (id, value) => {
+            const el = document.getElementById(id)
+            if (el) el.textContent = String(value)
+          }
+          set("statsTotal", total)
+          set("statsCompleted", completed)
+          set("statsRemaining", remaining)
+        }
+
+        window.renderTodos = renderTodos
+        window.updateStats = updateStats
+      })()
+    </script>
+</body>
+</html>
