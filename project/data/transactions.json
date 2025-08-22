@@ -1,0 +1,65 @@
+[
+  {
+    "id": "c21d7eb0-5a6a-419d-929c-15057e1f8cc2",
+    "type": "income",
+    "amount": 100000,
+    "category": "Business",
+    "description": "",
+    "date": "2025-08-23",
+    "userId": "Muhammad Moosa"
+  },
+  {
+    "id": "301fe782-a7bb-4447-ab33-9fe4d88bf2fb",
+    "type": "expense",
+    "amount": 25000,
+    "category": "Grocery",
+    "description": "",
+    "date": "2025-08-22",
+    "userId": "Muhammad Moosa"
+  },
+  {
+    "id": "e3e85742-92a8-4304-975f-6d6cfce698a6",
+    "type": "expense",
+    "amount": 12000,
+    "category": "Electricity",
+    "description": "",
+    "date": "2025-08-22",
+    "userId": "Muhammad Moosa"
+  },
+  {
+    "id": "084aef83-72f4-4f6c-a719-f6c6c7929553",
+    "type": "expense",
+    "amount": 4000,
+    "category": "Internet",
+    "description": "",
+    "date": "2025-08-22",
+    "userId": "Muhammad Moosa"
+  },
+  {
+    "id": "eba5292b-c90e-467b-910c-e28d6e8a8518",
+    "type": "expense",
+    "amount": 1000,
+    "category": "Phone Charges",
+    "description": "",
+    "date": "2025-08-22",
+    "userId": "Muhammad Moosa"
+  },
+  {
+    "id": "67831c56-d305-46a5-9d11-902635027b8f",
+    "type": "expense",
+    "amount": 25000,
+    "category": "House Rent",
+    "description": "",
+    "date": "2025-08-22",
+    "userId": "Muhammad Moosa"
+  },
+  {
+    "id": "fc1d05f5-b1ee-4452-b3d6-41445e7f3e53",
+    "type": "expense",
+    "amount": 1000,
+    "category": "petrol",
+    "description": "",
+    "date": "2025-08-22",
+    "userId": "Muhammad Moosa"
+  }
+]

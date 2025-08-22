@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title >Personal Finance Tracker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="bg-app text-gray-900">
+  <div class="max-w-5xl mx-auto p-4">
+    <header class="relative flex flex-col items-center justify-center py-6">
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-center">Personal Finance Tracker</h1>
+      <div id="authSection" class="mt-3 md:mt-0 md:absolute md:right-0 flex items-center gap-2"></div>
+    </header>
+
+    <!-- Centered auth area -->
+    <div id="authWrapper" class="min-h-[calc(100vh-8rem)] flex items-center justify-center">
+    <section id="authForms" class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+      <div class="relative overflow-hidden rounded-xl shadow-lg bg-white hidden md:block">
+        <img src="/auth.png" alt="Secure personal finance" class="w-full h-full object-cover md:h-full min-h-[360px]" />
+      
+      </div>
+      <div id="loginCard" class="bg-white rounded-xl shadow-lg p-8">
+        <h2 class="text-2xl font-bold mb-4">Login</h2>
+        <form id="loginForm" class="space-y-4" novalidate>
+          <input class="input" name="username" placeholder="Username" minlength="3" required />
+          <input class="input" type="password" name="password" placeholder="Password" minlength="6" required />
+          <p id="loginError" class="text-red-600 text-sm hidden"></p>
+          <button class="btn w-full" type="submit">Login</button>
+        </form>
+        <p class="text-sm mt-2">Don't have an account? <button id="showSignup" class="text-blue-600 hover:underline">Create account</button></p>
+      </div>
+      <div id="signupCard" class="bg-white rounded-xl shadow-lg p-8 hidden">
+        <h2 class="text-2xl font-bold mb-4">Create Account</h2>
+        <form id="signupForm" class="space-y-4" novalidate>
+          <input class="input" name="username" placeholder="Username" minlength="3" required />
+          <input class="input" type="password" name="password" placeholder="Password (min 6 chars)" minlength="6" required />
+          <p id="signupError" class="text-red-600 text-sm hidden"></p>
+          <div class="flex flex-col gap-2">
+            <button class="btn w-full" type="submit">Sign up</button>
+            <button type="button" id="cancelSignup" class="btn btn-secondary w-full">Back to Login</button>
+          </div>
+        </form>
+      </div>
+    </section>
+    </div>
+
+    <section id="dashboard" class="hidden space-y-4 mt-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="card">
+          <div class="text-gray-500">Total Income</div>
+          <div id="totalIncome" class="text-2xl font-bold text-green-600">PKR 0</div>
+        </div>
+        <div class="card">
+          <div class="text-gray-500">Total Expenses</div>
+          <div id="totalExpenses" class="text-2xl font-bold text-red-600">PKR 0</div>
+        </div>
+        <div class="card">
+          <div class="text-gray-500">Net</div>
+          <div id="netAmount" class="text-2xl font-bold text-blue-600">PKR 0</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="card md:col-span-2">
+          <h3 class="font-semibold mb-2">Income vs Expenses</h3>
+          <canvas id="barChart" height="100"></canvas>
+        </div>
+        <div class="card">
+          <h3 class="font-semibold mb-2">Spending by Category</h3>
+          <canvas id="pieChart" height="100"></canvas>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start md:items-stretch">
+        <div class="card h-full">
+          <h3 class="font-semibold mb-2">Add Transaction</h3>
+          <img src="/trans.png" alt="Add Transaction" class="mx-auto mb-2 max-h-24 object-contain" />
+          <form id="txForm" class="grid grid-cols-1 md:grid-cols-5 gap-2">
+            <!-- Row 1: Type, Amount, Add button -->
+            <select name="type" class="input md:col-span-2" required>
+              <option value="income">Income</option>
+              <option value="expense">Expense</option>
+            </select>
+            <input name="amount" type="number" step="0.01" min="0" class="input md:col-span-2" placeholder="Amount" required />
+            <button class="btn md:col-span-1" type="submit">Add</button>
+            <!-- Row 2: Category + Date across full width -->
+            <input name="category" class="input md:col-span-3" placeholder="Category" required />
+            <input name="date" type="date" class="input md:col-span-2" required />
+            <!-- Row 3: Description full width -->
+            <input name="description" class="input md:col-span-5" placeholder="Description (optional)" />
+          </form>
+        </div>
+        <div class="card h-full">
+          <h3 class="font-semibold mb-2">Transactions</h3>
+          <ul id="txList" class="divide-y"></ul>
+          <div class="flex items-center justify-between mt-3">
+            <button id="txPrev" class="btn btn-secondary">Prev</button>
+            <span id="txPageInfo" class="text-sm text-gray-600"></span>
+            <button id="txNext" class="btn btn-secondary">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+        <div class="card">
+          <h3 class="font-semibold mb-2">Subscriptions</h3>
+          <form id="subForm" class="grid grid-cols-2 gap-2">
+            <input name="name" class="input" placeholder="Name (e.g., Internet)" required />
+            <input name="amount" type="number" step="0.01" min="0" class="input" placeholder="Amount" required />
+            <input name="dueDate" type="date" class="input" required />
+            <select name="period" class="input" required>
+              <option value="monthly">Monthly</option>
+              <option value="quarterly">Quarterly</option>
+              <option value="yearly">Yearly</option>
+            </select>
+            <button class="btn col-span-2" type="submit">Add Subscription</button>
+          </form>
+          <div class="mt-4">
+            <ul id="subList" class="space-y-2"></ul>
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="font-semibold mb-2">This Month Summary</h3>
+          <img src="/month.png" alt="This Month Summary" class="mx-auto mb-2 max-h-40 object-contain" />
+          <ul id="alerts" class="space-y-2 text-sm "></ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="/scripts.js"></script>
+</body>
+</html>
